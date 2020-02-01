@@ -10,7 +10,7 @@ public class CompletePlayerController : MonoBehaviour {
 	public Text countText;			//Store a reference to the UI Text component which will display the number of pickups collected.
 	public Text winText;			//Store a reference to the UI Text component which will display the 'You win' message.
 
-	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
+	private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
 	private int count;				//Integer to store the number of pickups collected so far.
 
 	// Use this for initialization
@@ -63,6 +63,20 @@ public class CompletePlayerController : MonoBehaviour {
 			//Update the currently displayed count by calling the SetCountText function.
 			SetCountText ();
 		}
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.SetActive(false);
+
+            count = count - 1;
+
+            SetCountText();
+        }
+
+        if (count == 12)
+        {
+            transform.position = new Vector2(101.9f, -11.5f);
+        }
 		
 
 	}
